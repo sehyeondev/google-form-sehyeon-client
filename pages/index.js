@@ -9,18 +9,8 @@ function Home() {
         </Link>
       </li>
       <li>
-        <Link href="/form/abc">
-          <a>Go to pages/form/[pid].js</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/form/abc?foo=bar">
-          <a>Also goes to pages/form/[pid].js</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/form/abc/a-comment">
-          <a>Go to pages/form/[pid]/[comment].js</a>
+        <Link href="/form/result/1">
+          <a>Go to sample result page</a>
         </Link>
       </li>
     </ul>
