@@ -17,7 +17,7 @@ export default function Result () {
   useEffect(async () => {
     if (!router.isReady) return;
     const {id} = router.query
-    const url = `http://localhost:3000/api/result/${id}`
+    const url = `http://valley.sehyeondev.com/api/result/${id}`
     // const url = "http://valley.sehyeondev.com/"
     const rawResponse = await fetch(url, {
       method: 'GET',
