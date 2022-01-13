@@ -33,7 +33,7 @@ export default function Question ({
       <div className={styles.optionContainer}>
         {question.selectOptions.map((option, index) => {
           return (
-            <Option qType={question.qType} uuid={option.uuid} title={option.title} desc={option.desc} question={question} 
+            <Option key={index} qType={question.qType} uuid={option.uuid} title={option.title} desc={option.desc} question={question} 
                             updateOptionDesc={updateOptionDesc} updateOptionTitle={updateOptionTitle} deleteSelectOption={deleteSelectOption} />
           )
         })}

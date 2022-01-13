@@ -137,7 +137,7 @@ const AnswerWrapper = ({answerObjArray, question}) => {
   return (
     answerObjArray.map((answer, index) => {
       return (
-        <Box>
+        <Box key={index}>
           <Answer answer={answer} question={question} />
         </Box>
       )
@@ -167,7 +167,8 @@ const Answer = ({answer, question}) => {
         {
             answer.FormQuestionAnswerOptions.map((option, index) => {
             return (
-              <Box sx={{
+              <Box key={index} 
+                sx={{
                 width: '432px',
                 height: '24px',
                 m: '10px',
