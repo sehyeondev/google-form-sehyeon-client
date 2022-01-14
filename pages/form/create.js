@@ -10,7 +10,7 @@ export default function Create() {
 
   const submit = async () => {
     console.log('submit')
-    const url = "http://valley.sehyeondev.com/api/form/create"
+    const url = "https://valley.sehyeondev.com/api/form/create"
 
     const rawResponse = await fetch(url, {
       method: 'POST',
