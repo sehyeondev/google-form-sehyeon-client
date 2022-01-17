@@ -14,6 +14,8 @@ export default function Question ({
     {/* <div>{question.qType} - {question.title} - {question.desc}</div> */}
     <div>
       <input className={styles.title} placeholder='Question Title' value={question.title} onChange={e => updateQuestion("title", e.target.value, question.uuid)}/>
+      <br/>
+      <input className={styles.title} placeholder='Question Description' value={question.desc} onChange={e => updateQuestion("desc", e.target.value, question.uuid)}/>
 
       <select className={styles.select} value={question.qType} onChange={e => updateQuestion("qType", e.target.value, question.uuid)}>
         <option value="checkbox">checkbox</option>

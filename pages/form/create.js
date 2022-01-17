@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import styles from '../../styles/Home.module.css'
 import Question from '../../src/components/question'
@@ -9,7 +9,8 @@ export default function Create() {
   const [formDesc, setFormDesc] = useState("")
 
   const submit = async () => {
-    console.log('submit')
+    alert('submitted')
+    window.location.href='/form/create'
     const url = "https://valley.sehyeondev.com/api/form/create"
 
     const rawResponse = await fetch(url, {
