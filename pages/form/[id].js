@@ -126,6 +126,8 @@ export default function Form() {
         questions.map((question, index) => {
           return <div key = {index} className={styles.card}>
             <div className={styles.title}>{question.title}</div>
+            <br/>
+            <div className={styles.title}>{question.desc}</div>
             {
               ((question.qType === "checkbox") || (question.qType === "radio"))  &&
               <div className={styles.optionContainer}>
