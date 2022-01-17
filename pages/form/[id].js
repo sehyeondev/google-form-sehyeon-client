@@ -54,6 +54,7 @@ export default function Form() {
     },[router.isReady])
 
     const submit = async () => {
+      const {id} = router.query
       console.log('user submit')
       const url = "https://valley.sehyeondev.com/api/result/create"
 
@@ -66,6 +67,7 @@ export default function Form() {
         body: JSON.stringify({userUuid:uuidv4(), answers: answers})
       })
     const content = await rawResponse.json();
+    window.location.href=`/result/${id}`
     }
 
     const onTextChange = (text, questionId) => {

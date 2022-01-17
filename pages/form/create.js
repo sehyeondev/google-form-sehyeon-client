@@ -10,7 +10,7 @@ export default function Create() {
 
   const submit = async () => {
     alert('submitted')
-    window.location.href='/form/create'
+    
     const url = "https://valley.sehyeondev.com/api/form/create"
 
     const rawResponse = await fetch(url, {
@@ -24,6 +24,7 @@ export default function Create() {
 
     
     const content = await rawResponse.json();
+    window.location.href=`/form/${content.form.id}`
 
     console.log(content.success)
     console.log(content.form)
