@@ -128,7 +128,11 @@ const Question = ({question}) => {
         height: '56px',
         m: '10px',
       }}> {question.title} </Box>
-      <Box> {question.desc} </Box>
+      <Box sx={{
+        width: '432px',
+        height: '56px',
+        m: '10px',
+      }}> {question.desc} </Box>
     </Box>
   )
 }
