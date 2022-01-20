@@ -7,6 +7,7 @@ import styles from '../../styles/Home.module.css'
 import {v4 as uuidv4} from 'uuid'
 import Button from '@material-ui/core/Button';
 import SendIcon from '@mui/icons-material/Send';
+import Cookies from 'js-cookie'
 
 
 export default function Form() {
@@ -17,11 +18,12 @@ export default function Form() {
     const [formDesc, setFormDesc] = useState("")
     const [answers, setAnswers] = useState({})
 
+
     useEffect(async () => {
       if (!router.isReady) return;
       const {id} = router.query
       const url = `https://valley.sehyeondev.com/api/form/${id}`
-      // const url = "http://valley.sehyeondev.com/"
+      // const url = `http://localhost:8000/api/form/${id}`
       const rawResponse = await fetch(url, {
         method: 'GET',
         headers: {
@@ -32,12 +34,15 @@ export default function Form() {
       const content = await rawResponse.json()
 
       console.log(content)
+      if(!content.success){
+        alert("form not found")
+        return
+      }
       
       const cp = [...questions]
 
       const formQuestions = content.formQuestions;
       formQuestions.forEach((question, index) => {
-        console.log(question.FormQuestionOptions)
         cp.push({
           title: question.title,
           desc: question.desc,
@@ -47,7 +52,6 @@ export default function Form() {
           selectOptions: question.FormQuestionOptions,
         })
       })
-      console.log(cp)
       setQuestions(cp)
       setFormTitle(content.title)
       setFormDesc(content.desc)
@@ -55,19 +59,34 @@ export default function Form() {
 
     const submit = async () => {
       const {id} = router.query
+      const accessToken = Cookies.get('jwtToken')
+      const userUuid = uuidv4();
       console.log('user submit')
+      console.log(userUuid);
       const url = "https://valley.sehyeondev.com/api/result/create"
+      // const url = "http://localhost:8000/api/result/create"
 
       const rawResponse = await fetch(url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({userUuid:uuidv4(), answers: answers})
+        body: JSON.stringify({userUuid: uuidv4(), answers: answers})
       })
     const content = await rawResponse.json();
-    window.location.href=`/result/${id}`
+    console.log(content)
+    
+    if (content.success) {
+      alert("you are verified user, submit success")
+      window.location.href=`/result/${id}`
+    } else {
+      alert("not verified user")
+      window.location.href=`/`
+    }
+
+    
     }
 
     const onTextChange = (text, questionId) => {
@@ -76,8 +95,9 @@ export default function Form() {
       setAnswers(cp)
     }
 
-    const onOptionClicked = (clicked, oType, questionId, optionTitle) => {
+    const onOptionClicked = (clicked, oType, questionId, optionTitle, option) => {
       const cp = {...answers}
+      console.log(option)
 
       if (!(questionId in answers)) {
         cp[questionId] = []
@@ -136,7 +156,7 @@ export default function Form() {
                   return <div key = {index} className={styles.option}>
                     <input className={styles.optionBtn} 
                       type={question.qType} 
-                      onClick={ e => onOptionClicked(e.target.checked, question.qType, question.id, option.title)} 
+                      onClick={ e => onOptionClicked(e.target.checked, question.qType, question.id, option.title, option)} 
                       name = "option"/>
                     <div className={styles.optionTitle}> {option.title} </div>
                   </div>

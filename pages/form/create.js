@@ -9,9 +9,8 @@ export default function Create() {
   const [formDesc, setFormDesc] = useState("")
 
   const submit = async () => {
-    alert('submitted')
-    
     const url = "https://valley.sehyeondev.com/api/form/create"
+    // const url = "http://localhost:8000/api/form/create"
 
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -22,12 +21,11 @@ export default function Create() {
       body: JSON.stringify({title: formTitle, desc: formDesc, questions: questions})
     })
 
-    
     const content = await rawResponse.json();
-    window.location.href=`/form/${content.form.id}`
 
-    console.log(content.success)
-    console.log(content.form)
+    console.log(content.success) 
+    console.log(content.form) 
+    window.location.href=`/form/${content.form.id}`
   }
 
   const addQuestion = () => {
