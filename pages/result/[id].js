@@ -112,7 +112,12 @@ export default function Result () {
               bgcolor: 'white',
               m: '10px',
               borderRadius: '8px',
-              p: '24px',
+              width: '500px',
+              p: '5px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: "center",
+              alignItems: "center",
             }}>
               <Question question={question} />
               {
@@ -164,17 +169,17 @@ const Question = ({question}) => {
       m: '10px',
       borderRadius: '4px',
       pl: '10px',
+      pb:'10px',
+      pt: '10px',
       width: '432px',
-      height: '56px',
       fontSize: '20px',
     }}>
       <Box sx={{
         width: '432px',
-        height: '56px',
       }}> {question.title} </Box>
       <Box sx={{
         width: '432px',
-        height: '56px',
+        mt:'10px'
       }}> {question.desc} </Box>
     </Box>
   )
@@ -205,9 +210,9 @@ const Answer = ({answers, answer, question}) => {
       <Box> 
         <Box sx={{
           p:'16px',
-          width: '70%',
-          ml: '10px',
-          mt: '10px',
+          width: '432px',
+          m: '10px',
+          pl: '10px',
           bgcolor: 'rgba(0,0,0,0.05)',
         }}> {answer.answerText} </Box>
         </Box>
