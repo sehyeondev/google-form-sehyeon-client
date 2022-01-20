@@ -35,7 +35,7 @@ export default function Signup () {
     }
 
     console.log(content)
-    // window.location.href=`/login`
+    window.location.href=`/signin`
   }
 
   return (
@@ -49,6 +49,8 @@ export default function Signup () {
       <br/>
       <button onClick={() => onSignup()}>signup</button>
       {/* <button onClick={() => getJwtToken()}>jwtToken</button> */}
+      <br/>
+      <br/>
       <div>If you already have an account</div>
       <Link href="/signin">
         <a>Click here to go login page</a>

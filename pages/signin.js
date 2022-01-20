@@ -34,7 +34,6 @@ export default function Signin () {
     Cookies.set('jwtToken', content.user.accessToken)
 
     console.log(content.user.accessToken) //jwtToken
-    // window.location.href=`/login`
   }
 
   const getJwtToken = () => {
@@ -55,10 +54,11 @@ export default function Signin () {
       {/* <button onClick={() => getJwtToken()}>jwtToken</button> */}
       {
         loggedIn && <div>
+          <br/>
           <div>You are logged in</div>
           <br/>
           <Link href="/form/2">
-            <a>Click here to submit answer</a>
+            <a>Click here to submit answer 2022.01.21</a>
           </Link>
           <br/>
           <br/>
@@ -69,7 +69,9 @@ export default function Signin () {
       }
       {
         !loggedIn && <div>
+        <br/>
           <div>You are not logged in</div>
+          <br/>
           <Link href="/signup">
             <a>Click here to signup</a>
           </Link>

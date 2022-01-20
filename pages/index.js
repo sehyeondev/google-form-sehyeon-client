@@ -6,12 +6,14 @@ import Head from 'next/head'
 function Home() {
   return (
     <div style={{margin:"10px"}}>
+      <h1>Welcome!</h1>
       <Link href="signup">
-        <a>signup</a>        
+        <a>Click here to signup</a>        
       </Link>
       <br/>
+      <br/>
       <Link href="signin">
-        <a>login</a>        
+        <a>Click here to login</a>        
       </Link>
     </div>
   )
