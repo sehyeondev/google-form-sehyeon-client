@@ -164,22 +164,28 @@ const Question = ({question}) => {
       flexDirection: 'column',
       justifyContent: "center",
       alignItems: 'center',
-      bgcolor: 'rgba(0,0,0,0.1)',
       color: 'black',
       m: '10px',
       borderRadius: '4px',
-      pl: '10px',
-      pb:'10px',
-      pt: '10px',
       width: '432px',
-      fontSize: '20px',
+      fontSize: '19px',
     }}>
       <Box sx={{
-        width: '432px',
+        width: '460px',
+        bgcolor: 'rgba(0,0,0,0.1)',
+        borderRadius: '4px',
+        pl: '10px',
+        pb:'10px',
+        pt: '10px',
       }}> {question.title} </Box>
       <Box sx={{
-        width: '432px',
-        mt:'10px'
+        width: '460px',
+        mt:'10px',
+        bgcolor: 'rgba(0,0,0,0.1)',
+        borderRadius: '4px',
+        pl: '10px',
+        pb:'10px',
+        pt: '10px',
       }}> {question.desc} </Box>
     </Box>
   )
