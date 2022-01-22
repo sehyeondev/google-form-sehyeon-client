@@ -128,13 +128,14 @@ export default function Result () {
                     )}
                 })
               }
-              {/* {
-                (question.qType === "radio" || question.qType === "checkbox") && 
+
+              {
+                (question.qType === "radio" || question.qType === "checkbox" ) && (Object.keys(myAnswers).length) &&
                 <Box>
                 {
                   Object.keys(myAnswers[question.id]).map((title, index) => {
                     return (
-                      <Box sx={{
+                      <Box key={index} sx={{
                         width: '432px',
                         height: '24px',
                         m: '10px',
@@ -147,7 +148,7 @@ export default function Result () {
                   })
                 }
                 </Box>
-              } */}
+              }
               
             </Box>
           )
@@ -224,7 +225,7 @@ const Answer = ({answers, answer, question}) => {
         </Box>
     }
    
-    <Box>
+    {/* <Box>
         {
           ((question.qType === "radio") || (question.qType === "checkbox")) &&
             answer.FormQuestionAnswerOptions.map((option, index) => {
@@ -242,7 +243,7 @@ const Answer = ({answers, answer, question}) => {
             )
             })
         }
-      </Box>
+      </Box> */}
       {/* <Box>
         {
           Object.keys(myAnswers[question.id]).map((title, index) => {

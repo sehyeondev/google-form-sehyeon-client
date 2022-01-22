@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import styles from '../../styles/Home.module.css'
 import Question from '../../src/components/question'
+import axios from 'axios'
 
 export default function Create() {
   const [questions, setQuestions] = useState([])
@@ -9,23 +10,32 @@ export default function Create() {
   const [formDesc, setFormDesc] = useState("")
 
   const submit = async () => {
+    alert("submitted")
+    // const url = "http://valley.sehyeondev.com/api/form/create"
     const url = "https://valley.sehyeondev.com/api/form/create"
     // const url = "http://localhost:8000/api/form/create"
 
-    const rawResponse = await fetch(url, {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({title: formTitle, desc: formDesc, questions: questions})
+    // const rawResponse = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({title: formTitle, desc: formDesc, questions: questions})
+    // })
+
+    
+
+    // const content = await rawResponse.json();
+
+    // console.log(content.success) 
+    // console.log(content.form) 
+    // window.location.href=`/form/${content.form.id}`
+
+    axios.post(url, {title: formTitle, desc: formDesc, questions: questions})
+    .then(function (res) {
+      console.log(res)
     })
-
-    const content = await rawResponse.json();
-
-    console.log(content.success) 
-    console.log(content.form) 
-    window.location.href=`/form/${content.form.id}`
   }
 
   const addQuestion = () => {
