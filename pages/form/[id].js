@@ -166,7 +166,7 @@ export default function Form() {
                     <input className={styles.optionBtn} 
                       type={question.qType} 
                       onClick={ e => onOptionClicked(e.target.checked, question.qType, question.id, option.title, option)} 
-                      name = "option"/>
+                      name = {question.id}/>
                     <div className={styles.optionTitle}> {option.title} </div>
                   </div>
                 })
