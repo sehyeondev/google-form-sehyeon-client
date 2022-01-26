@@ -30,12 +30,13 @@ export default function Create() {
 
     // console.log(content.success) 
     // console.log(content.form) 
-    // window.location.href=`/form/${content.form.id}`
+    
 
     axios.post(url, {title: formTitle, desc: formDesc, questions: questions})
     .then(function (res) {
       console.log(res)
     })
+    window.location.href=`/form/${content.form.id}`
   }
 
   const addQuestion = () => {
