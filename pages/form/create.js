@@ -12,7 +12,7 @@ export default function Create() {
   const submit = async () => {
     alert("submitted")
     // const url = "http://valley.sehyeondev.com/api/form/create"
-    const url = "https://valley.sehyeondev.com/api/form/create"
+    const url = "https://sehyeondev.com/api/form/create"
     // const url = "http://localhost:8000/api/form/create"
 
     // const rawResponse = await fetch(url, {

@@ -14,7 +14,7 @@ export default function Signup () {
 
   const onSignup = async () => {
     // alert("signup")
-    const url = "https://valley.sehyeondev.com/api/user/signup"
+    const url = "https://sehyeondev.com/api/user/signup"
     // const url = "http://localhost:8000/api/user/signup"
 
     const rawResponse = await fetch(url, {

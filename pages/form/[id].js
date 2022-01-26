@@ -22,7 +22,7 @@ export default function Form() {
     useEffect(async () => {
       if (!router.isReady) return;
       const {id} = router.query
-      const url = `https://valley.sehyeondev.com/api/form/${id}`
+      const url = `https://sehyeondev.com/api/form/${id}`
       // const url = `http://localhost:8000/api/form/${id}`
       const rawResponse = await fetch(url, {
         method: 'GET',
@@ -63,7 +63,7 @@ export default function Form() {
       const userUuid = uuidv4();
       console.log('user submit')
       console.log(userUuid);
-      const url = "https://valley.sehyeondev.com/api/result/create"
+      const url = "https://sehyeondev.com/api/result/create"
       // const url = "http://localhost:8000/api/result/create"
 
       const rawResponse = await fetch(url, {
