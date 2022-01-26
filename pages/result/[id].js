@@ -29,15 +29,45 @@ export default function Result () {
       }
     });
     const content = await rawResponse.json()
+    
+    let _answers = {}
+
+    const cp = [...questions]
+
+    const formQuestions = content.formQuestions;
+
+    formQuestions.forEach((question, index) => {
+      cp.push({
+        title: question.title,
+        desc: question.desc,
+        qType: question.qType,
+        id: question.id,
+        formId: question.formId,
+        selectOptions: question.FormQuestionOptions,
+      })
+
+      const selectOptions = question.FormQuestionOptions;
+
+      selectOptions.forEach((option) => {
+        if (!(question.id in _answers)){
+          _answers[question.id] = {}
+        }
+        _answers[question.id][option.title] = 0
+      })
+    })
+
+    console.log(_answers)
+    setQuestions(cp)
 
     setFormTitle(content.form.title);
     setFormDesc(content.form.desc);
-    setQuestions(content.formQuestions);
+    // setQuestions(content.formQuestions);
     setAnswers(content.answers);
     console.log("answers of content")
     console.log(content.answers);
+    console.log(content.formQuestions)
     
-    let _answers = {}
+    
     Object.keys(content.answers).forEach((formQuestionId, index) => {
       if (!(formQuestionId in _answers)){
         _answers[formQuestionId] = {}
@@ -46,9 +76,6 @@ export default function Result () {
       answerObjArray.forEach((answerObj) => {
         if (answerObj.answerText) return;
         answerObj.FormQuestionAnswerOptions.forEach((option) => {
-          if (!(option.title in _answers[formQuestionId])){
-            _answers[formQuestionId][option.title] = 0
-          }
           _answers[formQuestionId][option.title] ++
         })
       })
@@ -121,14 +148,14 @@ export default function Result () {
             }}>
               <Question question={question} />
               {
-                Object.keys(answers).map((formQuestionId, index) => {
-                  if (parseInt(formQuestionId) === question.id){
-                    return (
-                      <AnswerWrapper key={index} answers={answers} answerObjArray={answers[formQuestionId]} question={question} />
-                    )}
-                })
+                (question.qType === "text" || question.qType === "longText" ) &&
+                  Object.keys(answers).map((formQuestionId, index) => {
+                    if (parseInt(formQuestionId) === question.id){
+                      return (
+                        <TextAnswer key={index} answers={answers} answerObjArray={answers[formQuestionId]} question={question} />
+                      )}
+                  })
               }
-
               {
                 (question.qType === "radio" || question.qType === "checkbox" ) && (Object.keys(myAnswers).length) &&
                 <Box>
@@ -136,13 +163,26 @@ export default function Result () {
                   Object.keys(myAnswers[question.id]).map((title, index) => {
                     return (
                       <Box key={index} sx={{
-                        width: '432px',
+                        display: 'flex',
+                        flexDirection: 'row',
+                      }} >
+                        <Box sx={{
+                        width: '400px',
                         height: '24px',
                         m: '10px',
                         pl: '10px',
                         bgcolor: 'rgba(0,0,0,0.05)',
-                      }}>
-                        {title} - {myAnswers[question.id][title]}
+                        borderRadius: '4px',
+                      }}>{title}</Box>
+                        <Box sx={{
+                        width: '32px',
+                        height: '24px',
+                        m: '10px',
+                        pl: '10px',
+                        bgcolor: 'rgba(0,0,0,0.05)',
+                        borderRadius: '4px',
+                      }}>{myAnswers[question.id][title]}</Box>
+                         
                       </Box>
                     )
                   })
@@ -192,71 +232,19 @@ const Question = ({question}) => {
   )
 }
 
-const AnswerWrapper = ({answers, answerObjArray, question}) => {
+const TextAnswer = ({answerObjArray}) => {
   return (
     answerObjArray.map((answer, index) => {
       return (
-        <Box key={index}>
-          <Answer answers={answers} answer={answer} question={question} />
-        </Box>
-      )
-    })
-  )
-}
-
-const Answer = ({answers, answer, question}) => {
-  // check how many options are answered.. how?
-  // object key: option.title, value: number
-  // value/totAnswers * 100 => show in graph (css)
-  
-  
-  return (
-    <Box>
-     {
-      ((question.qType === "text") || (question.qType === "longText")) &&
-      <Box> 
-        <Box sx={{
+        <Box key={index} sx={{
           p:'16px',
           width: '432px',
           m: '10px',
           pl: '10px',
           bgcolor: 'rgba(0,0,0,0.05)',
+          borderRadius: '4px',
         }}> {answer.answerText} </Box>
-        </Box>
-    }
-   
-    {/* <Box>
-        {
-          ((question.qType === "radio") || (question.qType === "checkbox")) &&
-            answer.FormQuestionAnswerOptions.map((option, index) => {
-            return (
-              <Box key={index} 
-                sx={{
-                width: '432px',
-                height: '24px',
-                m: '10px',
-                pl: '10px',
-                bgcolor: 'rgba(0,0,0,0.05)',
-              }}>
-                {option.title}
-              </Box>
-            )
-            })
-        }
-      </Box> */}
-      {/* <Box>
-        {
-          Object.keys(myAnswers[question.id]).map((title, index) => {
-            return (
-              <Box key={index}>
-                {title} - {myAnswers[question.id][title]}
-              </Box>
-            )
-          })
-        }
-      </Box>  */}
-      
-      
-    </Box>
+      )
+    })
   )
 }
