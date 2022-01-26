@@ -53,7 +53,7 @@ export default function Signup () {
       <br/>
       <div>If you already have an account</div>
       <Link href="/signin">
-        <a>Click here to go login page</a>
+        <button>Click here to go login page</button>
       </Link>
     </div>
   )

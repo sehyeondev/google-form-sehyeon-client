@@ -80,7 +80,7 @@ export default function Form() {
     
     if (content.success) {
       alert("you are verified user, submit success")
-      window.location.href=`/result/${id}`
+      window.location.href=`/`
     } else {
       alert("not verified user")
       window.location.href=`/`
@@ -134,19 +134,29 @@ export default function Form() {
             )
           })
         } */}
+
+        {/* align-self: flex-start;
+  margin-left: 20px;
+  margin-top: 10px; */}
+
         <div className={styles.formTitle}> {formTitle} </div>
 
         <div className={styles.info}>
           <div className={styles.solidBar}></div>
           <div className={styles.formTitle}> {formTitle} </div>
-          <div className={styles.formTitle}> {formDesc} </div>
+          <div style={{
+            fontSize: '20px',
+            alignSelf: 'flex-start',
+            marginLeft: '20px',
+            marginTop: '10px',
+            }}> {formDesc} </div>
         </div>
 
         {
         questions.map((question, index) => {
           return <div key = {index} className={styles.card}>
-            <div className={styles.title}>{question.title}</div>
-            <div className={styles.title}>{question.desc}</div>
+            <div className={styles.title} style={{lineHeight: '50px', width: '500px'}}>{question.title}</div>
+            <div className={styles.title} style={{lineHeight: '50px', width: '500px'}}>{question.desc}</div>
             {
               ((question.qType === "checkbox") || (question.qType === "radio"))  &&
               <div className={styles.optionContainer}>

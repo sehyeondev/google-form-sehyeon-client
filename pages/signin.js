@@ -55,25 +55,27 @@ export default function Signin () {
       {
         loggedIn && <div>
           <br/>
-          <div>You are logged in</div>
-          <br/>
-          <Link href="/form/2">
-            <a>Click here to submit answer 2022.01.21</a>
+          <h3>You are logged in</h3>
+          
+          <div style={{marginBottom: 10}}>Click form title</div>
+          <Link href="/form/9">  
+            <button>DeathValley Survey</button>
           </Link>
           <br/>
           <br/>
+          <br/>
           <Link href="/">
-            <a>Click here to go Homepage</a>
+            <button>Go to Homepage</button>
           </Link>
         </div>
       }
       {
         !loggedIn && <div>
         <br/>
-          <div>You are not logged in</div>
+          <h3>You are not logged in</h3>
           <br/>
           <Link href="/signup">
-            <a>Click here to signup</a>
+            <button>Click here to signup</button>
           </Link>
         </div>
       }

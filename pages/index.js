@@ -8,12 +8,12 @@ function Home() {
     <div style={{margin:"10px"}}>
       <h1>Welcome!</h1>
       <Link href="signup">
-        <a>Click here to signup</a>        
+        <button>Click here to signup</button>        
       </Link>
       <br/>
       <br/>
       <Link href="signin">
-        <a>Click here to login</a>        
+        <button>Click here to login</button>        
       </Link>
     </div>
   )
