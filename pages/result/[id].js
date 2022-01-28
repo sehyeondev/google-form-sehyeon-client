@@ -209,7 +209,7 @@ const Question = ({question}) => {
       m: '10px',
       borderRadius: '4px',
       width: '432px',
-      fontSize: '19px',
+      fontWeight: '500'
     }}>
       <Box sx={{
         width: '460px',
